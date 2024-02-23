@@ -1,0 +1,108 @@
+:root {
+  --primary-color: #007bff; /* Primary button color */
+  --secondary-color: #074d99; /* Primary button color */
+  --text-color: #212529; /* Primary text color */
+  --background-color: #f8f9fa; /* Light background color */
+  --border-radius: 0.25rem; /* Rounded corners for inputs/buttons */
+  --box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'PT Mono', monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+select,
+textarea {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius);
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+
+.buttons {
+  text-align: center;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+footer {
+  background-color: var(--background-color);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--box-shadow) upwards;
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.main-div {
+  max-width: 600px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px 2px rgb(0, 0, 0);
+}
+
+h2 {
+  text-align: center;
+}

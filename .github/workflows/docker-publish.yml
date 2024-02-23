@@ -1,9 +1,8 @@
 name: Publish Docker Image
 
 on:
-  # push:
-  #   branches: ["main"]
-  workflow_dispatch:
+  push:
+    branches: ["main"]
 
 env:
   # Use docker.io for Docker Hub if empty

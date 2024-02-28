@@ -29,7 +29,6 @@ class PasswordGenerator {
     // if nothing is saved, use defaults:
     this.options = {
       doUppercase: true,
-      separators: [""],
       addRandomEndNumber: true,
     };
     // try to load from localStorage
@@ -43,16 +42,6 @@ class PasswordGenerator {
         }
       }
     }
-    // fix up separators
-    if (window.localStorage.getItem("separators") != null) {
-      if (window.localStorage.getItem("separators").includes(",,")) {
-        this.options.separators.push(",");
-        this.options.separators = this.options.separators.filter(
-          (i) => i !== ""
-        );
-      }
-    }
-
     // TODO: update UI elements based on options
   }
 
@@ -60,32 +49,18 @@ class PasswordGenerator {
     // Options that should be saved
     this.optionRefs.minWords = document.getElementById("pw-min-words");
     this.optionRefs.pwAmount = document.getElementById("pw-amount")
-    this.optionRefs.separators = document.getElementById("pw-separators");
     this.optionRefs.doUppercase = document.getElementById("pw-uppercase");
     this.optionRefs.language = document.getElementById("pw-language")
     this.optionRefs.saveOptions = document.getElementById("pw-save-options");
-
+    this.optionRefs.separators = document.getElementsByName("separator");
     // Other UI refs
     this.passwordBox = document.getElementById("pw-text");
     this.generateButton = document.getElementById("pw-generate");
     this.copyButton = document.getElementById("pw-copy");
 
     // bind event listeners
-    this.optionRefs.separators.oninput = (evt) => this.updateSeparators(evt);
   }
 
-  updateSeparators(evt) {
-    // remove duplicates and store as an array
-    const sepSet = new Set(evt.target.value);
-    this.options.separators = Array.from(sepSet);
-
-    // update inputbox with actual separators used
-    const displaySeps = this.options.separators.join("");
-    this.optionRefs.separators.value = displaySeps;
-
-    // save options if appropriate
-    this.saveOptions();
-  }
 
   async loadWordListFromFile() {
     this.wordsEn = await fetch("../data/sample_dict_EN.txt")
@@ -102,6 +77,16 @@ class PasswordGenerator {
       const word_list = data.split(",")
       return word_list
     })
+  }
+
+  getSelectedSeparatorValue() {
+    // Iterate through each radio button to find the checked one
+    for (let i = 0; i < this.optionRefs.separators.length; i++) {
+      if (this.optionRefs.separators[i].checked) {
+        // Return the value of the checked radio button
+        return this.optionRefs.separators[i].value;
+      }
+    }
   }
 
   generateNewPassword(evt) {
@@ -127,13 +112,10 @@ class PasswordGenerator {
             word = word.toUpperCase()
           }
         }
-
-        const sepNum = this.getRand(0, this.options.separators.length);
-        let sep = this.options.separators[sepNum];
-        return acc + word + sep;
+        return word = acc + word + this.getSelectedSeparatorValue()
+        
       }, "");
-      console.log(this.options.separators);
-      if (this.options.separators.length > 0 && this.options.separators[0] !== "") {
+      if (this.getSelectedSeparatorValue() != "") {
         // If there are separators, remove the last separator
         newPassword = newPassword.slice(0, -1);
       }

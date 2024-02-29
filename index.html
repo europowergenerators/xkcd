@@ -7,9 +7,8 @@
     <meta name="author" content="Kyan Machiels" />
   </head>
   <body>
-    <!-- Weltschmerz.dev - Lets get We(a)lthy -->
     <main>
-      <div class="main-div">
+      <section class="main-div">
         <h2>XKCD Password Generator</h2>
         <form>
           <textarea type="text" id="pw-text" rows="3" readonly></textarea>
@@ -43,14 +42,14 @@
             <option value="NL" selected="selected">NL</option>
             <option value="EN">EN</option>
           </select>
-          <div class="separator-options">
-            <p>Select Separator:</p>
+          <fieldset class="separator-options">
+            <legend>Select Separator:</legend>
             <div>
-              <input type="radio" id="separator-none" name="separator" value="" checked>
+              <input type="radio" id="separator-none" name="separator" value="">
               <label for="separator-none">None</label>
             </div>
             <div>
-              <input type="radio" id="separator-space" name="separator" value=" ">
+              <input type="radio" id="separator-space" name="separator" value=" " checked>
               <label for="separator-space">Space ( )</label>
             </div>
             <div>
@@ -58,21 +57,18 @@
               <label for="separator-dash">Dash (-)</label>
             </div>
           </div>
+          </fieldset>
           <br />
           <input type="checkbox" id="pw-uppercase" checked="checked" />
           <label for="pw-uppercase">Capitalize random word</label>
-          <br />
-          <input type="checkbox" id="pw-save-options" />
-          <label for="pw-save-options">Save options locally?</label>
           <br />
           <br />
           <div class="buttons">
             <button type="button" id="pw-generate">Generate</button>
           </div>
         </form>
-
-        <script type="text/javascript" src="js/main.js"></script>
-      </div>
+        <script src="js/main.js"></script>
+      </section>
     </main>
   </body>
 </html>

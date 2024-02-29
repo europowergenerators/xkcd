@@ -1,6 +1,6 @@
 :root {
   --primary-color: #007bff; /* Primary button color */
-  --secondary-color: #074d99; /* Primary button color */
+  --secondary-color: #074d99; /* Secondary button color */
   --text-color: #212529; /* Primary text color */
   --background-color: #f8f9fa; /* Light background color */
   --border-radius: 0.25rem; /* Rounded corners for inputs/buttons */
@@ -79,11 +79,13 @@ button:hover {
   background-color: var(--secondary-color);
 }
 
-footer {
-  background-color: var(--background-color);
-  padding: 1rem;
-  text-align: center;
-  box-shadow: var(--box-shadow) upwards;
+input[type="text"]:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 footer a {
@@ -101,7 +103,11 @@ footer a:hover {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0px 5px 20px 2px rgb(0, 0, 0);
+  box-shadow: 0px 5px 20px 0px #0000004d;
+}
+
+.separator-options {
+  border: 1px solid #ced4da;
 }
 
 h2 {
